@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- static -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='js/layout.js') }}"></script>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/adsense.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='js/adsense.js') }}"></script>
+
+
+        <!-- bootstrap 4 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title> {% block title %} {% endblock %} </title>
+        {% block styles %} {% endblock %}
+    </head>
+    <body>
+    {% block navbar %}
+        {% if flag  == True %}
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="fas fa-close" onclick="closeNav()"></a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+        <nav class="navbar navbar-transparent bg-transparent">
+            <a href="javascript:void(0)" class="navbar-brand" onclick="openNav()">
+            <span><i class="fas fa-bars"></i></span>
+            </a>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a> {{ user }} </a>
+            </li>
+                <li class="nav-item">
+                <a href="{{ url_for('logout') }}"> 
+                    <img src="{{ picture }}" height="35" width="35" alt="profile" class="rounded-circle"> 
+                </a>
+                </li>
+            </ul>
+        </nav>
+
+        {% elif request.path == url_for('login') %}
+        <nav class="navbar navbar-transparent bg-transparent">
+            <a type="button" class="btn btn-outline-transparent btn-sm" href="{{ url_for('index') }}">LOGO</a>
+            <ul class="nav justify-content-end">
+    .            <li class="nav-item">
+                    <a type="button" class="btn btn-outline-dark btn-sm" href="{{ url_for('register') }}">Register</a>
+                </li>     
+            </ul>
+        </nav>
+
+        {% elif request.path == url_for('register') %}
+        <nav class="navbar navbar-transparent bg-transparent">
+            <a type="button" class="btn btn-outline-transparent btn-sm" href="{{ url_for('index') }}">LOGO</a>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a type="button" class="btn btn-outline-dark btn-sm" href="{{ url_for('login') }}">Login</a>
+                </li>                
+            </ul>
+        </nav>
+
+        {% else %}
+        <nav class="navbar navbar-transparent bg-transparent">
+            <a type="button" class="btn btn-outline-transparent btn-sm" href="{{ url_for('index') }}">LOGO</a>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a type="button" class="btn btn-outline-dark btn-sm" href="{{ url_for('login') }}">Login</a>
+                </li>
+    .            <li class="nav-item">
+                    <a type="button" class="btn btn-outline-dark btn-sm" href="{{ url_for('register') }}">Register</a>
+                </li>       
+            </ul>
+        </nav>
+        {% endif %}
+
+    {% endblock %}
+
+
+        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+        {% block content %}
+        {% endblock %} 
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+        <span class="text-muted">© RamLyn Corp. 2021</span>
+        </div>
+    </footer>
+    </body>
+</html>
+
+
