@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %} Yeoboseyo - Login {% endblock %}
+
+{% block styles %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<form action="action_page.php" method="post">
+    <div class="container">
+        <h1>Sign In</h1>
+        <p>Or use your social media account</p>
+        <a href="#" class="fa fa-facebook-square" aria-hidden="true"></a>
+        <a href="#" class="fa fa-twitter-square" aria-hidden="true"></a>
+        <a href="{{ url_for('google_login') }}" class="fa fa-google-plus-square" aria-hidden="true"></a>
+        <hr>
+      <label for="email"><b>Email Address</b></label>
+      <input type="email" placeholder="Email Address" name="email" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Password" name="psw" required>
+  
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" name="remember"> Remember me
+      </label>
+      <span class="psw"><a href="#">Forgot password?</a></span>
+    </div>
+</form>
+{% endblock %}  
