@@ -1,2 +1,2 @@
-# Yeoboseyo-Flask
-This is a sample web application using python
+# Python-Repo
+This is a repository of my projects using python.
